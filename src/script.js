@@ -379,8 +379,6 @@ const getSeriesList = async function () {
 
     if (!res.ok) throw new Error(`${data.message} (${res.status})`);
 
-    
-
     movies = data.results.filter(
       (movie) => movie.poster_path !== null && movie.backdrop_path !== null
     );
@@ -393,7 +391,6 @@ const getSeriesList = async function () {
     input.value = "";
 
     pageName.innerHTML = "Tv series";
-    
 
     popularSidebar.style.backgroundColor = "";
     popularSidebar.style.color = "";
@@ -412,17 +409,15 @@ const getSeriesList = async function () {
     watchlistTopNav.classList.remove("nav__active");
     seriesTopNav.classList.add("nav__active");
 
-    
     watchlistSidebar.style.backgroundColor = "";
     watchlistSidebar.style.color = "";
-    
+
     seriesSidebar.style.backgroundColor = "white";
     seriesSidebar.style.color = "black";
   } catch (err) {
     console.error(err);
   }
 };
-
 
 const displaySeries = function (movies) {
   movies.forEach((movie) => {
@@ -561,7 +556,6 @@ const topRated = async function () {
   }
 };
 
-
 const upcoming = async function () {
   try {
     const res = await fetch(
@@ -606,8 +600,6 @@ const upcoming = async function () {
     console.error(err);
   }
 };
-
-
 
 const popular = async function () {
   try {
@@ -656,4 +648,46 @@ const popular = async function () {
   }
 };
 
+seriesTopNav.addEventListener("click", () => {
+  getSeriesList();
+});
 
+watchlistTopNav.addEventListener("click", () => {
+  getWatchlist();
+});
+
+trendingTopNav.addEventListener("click", () => {
+  trendingMovies();
+});
+
+browseTopNav.addEventListener("click", () => {
+  discoverMovies();
+});
+
+upcomingSidebar.addEventListener("click", () => {
+  upcoming();
+});
+
+popularSidebar.addEventListener("click", () => {
+  popular();
+});
+
+topRatedSidebar.addEventListener("click", () => {
+  topRated();
+});
+
+watchlistSidebar.addEventListener("click", () => {
+  getWatchlist();
+});
+
+seriesSidebar.addEventListener("click", () => {
+  getSeriesList();
+});
+
+trendingSidebar.addEventListener("click", () => {
+  trendingMovies();
+});
+
+browseSidebar.addEventListener("click", () => {
+  discoverMovies();
+});

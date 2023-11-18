@@ -8,7 +8,7 @@
       href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
     />
     <link rel="stylesheet" href="./style.css" />
-    <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="/img/favicon.ico" />
     <script defer src="./script.js"></script>
 
     <title>CinemaSync</title>
@@ -23,28 +23,28 @@
           <span class="tooltip">Search</span>
         </li>
         <li>
-          <a onclick="discoverMovies()">
+          <a >
             <i class="bx bx-compass"></i>
           </a>
           <span class="tooltip">Browse</span>
         </li>
 
         <li>
-          <a onclick="trendingMovies()">
+          <a >
             <i class="bx bx-trending-up"></i>
           </a>
           <span class="tooltip">Trending</span>
         </li>
 
         <li>
-          <a onclick="getSeriesList()">
+          <a >
             <i class="bx bx-tv"></i>
           </a>
           <span class="tooltip">Tv Series</span>
         </li>
 
         <li>
-          <a onclick="getWatchlist()">
+          <a >
             <i class="bx bx-movie-play"></i>
           </a>
           <span class="tooltip">Watchlist</span>
@@ -52,19 +52,19 @@
 
         <li>
           <a onclick="topRated()">
-            <i class='bx bx-trophy'></i>
+            <i class="bx bx-trophy"></i>
           </a>
           <span class="tooltip">Top Rated</span>
         </li>
         <li>
-          <a onclick="popular()">
-            <i class='bx bxs-hot' ></i>
+          <a >
+            <i class="bx bxs-hot"></i>
           </a>
           <span class="tooltip">Popular</span>
         </li>
         <li>
-          <a onclick="upcoming()">
-            <i class='bx bxs-hourglass' ></i>
+          <a >
+            <i class="bx bxs-hourglass"></i>
           </a>
           <span class="tooltip">Upcoming</span>
         </li>
@@ -75,16 +75,18 @@
       <header>
         <img src="../logo.png" class="logo" alt="logo" />
         <div>
-          <span class="link" id="browse" onclick="discoverMovies()"
+          <span class="link" id="browse"
             >browse</span
           >
-          <span class="link" id="trending" onclick="trendingMovies()"
+          <span class="link" id="trending"
             >Trending</span
           >
-          <span class="link" id="watchlist" onclick="getWatchlist()"
+          <span class="link" id="watchlist"
             >Watchlist</span
           >
-          <span class="link" id="series" onclick="getSeriesList()">Tv series</span>
+          <span class="link" id="series" 
+            >Tv series</span
+          >
           <input placeholder="Search.." class="input" type="search" />
         </div>
       </header>
@@ -93,11 +95,6 @@
       </div>
       <div class="cards"></div>
     </section>
-
-    <!-- <div class="overlay">
-      <div class="movie_card">
-       <input type="search" class="big__search">
-      </div> -->
 
     <section class="popup"></section>
     <h5 class="success">Added to Watchlist &#10004;</h5>
