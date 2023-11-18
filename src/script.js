@@ -71,6 +71,8 @@ const discoverMovies = async function () {
     popularSidebar.style.backgroundColor = "";
     popularSidebar.style.color = "";
 
+    searchSidebar.style.display = "none";
+
     searchSidebar.style.backgroundColor = "";
     searchSidebar.style.color = "";
   } catch (err) {
@@ -156,8 +158,6 @@ const displayPopup = function (movie) {
   });
 };
 
-discoverMovies();
-
 const trendingMovies = async function () {
   try {
     const res = await fetch(
@@ -184,6 +184,8 @@ const trendingMovies = async function () {
     trendingSidebar.style.color = "";
     topRatedSidebar.style.backgroundColor = "";
     topRatedSidebar.style.color = "";
+
+    searchSidebar.style.display = "none";
 
     watchlistSidebar.style.backgroundColor = "";
     watchlistSidebar.style.color = "";
@@ -229,6 +231,7 @@ const searchMovies = async function (query) {
     pageName.innerHTML = "Search";
     searchSidebar.style.backgroundColor = "white";
     searchSidebar.style.color = "black";
+    searchSidebar.style.display = "block";
 
     browseSidebar.style.backgroundColor = "";
     browseSidebar.style.color = "";
@@ -313,6 +316,8 @@ const getWatchlist = async function (movieIdToAdd) {
 
     input.value = "";
 
+    searchSidebar.style.display = "none";
+
     pageName.innerHTML = "Watchlist";
     watchlistSidebar.style.backgroundColor = "white";
     watchlistSidebar.style.color = "black";
@@ -328,6 +333,7 @@ const getWatchlist = async function (movieIdToAdd) {
 
     trendingTopNav.classList.remove("nav__active");
     browseTopNav.classList.remove("nav__active");
+    seriesTopNav.classList.remove("nav__active");
     watchlistTopNav.classList.add("nav__active");
 
     upcomingSidebar.style.backgroundColor = "";
@@ -335,6 +341,9 @@ const getWatchlist = async function (movieIdToAdd) {
 
     topRatedSidebar.style.backgroundColor = "";
     topRatedSidebar.style.color = "";
+
+    seriesSidebar.style.backgroundColor = "";
+    seriesSidebar.style.color = "";
   } catch (err) {
     console.error(err);
   }
@@ -368,10 +377,10 @@ const displayWatchlist = function (movies) {
   });
 };
 
-const getSeriesList = async function () {
+const topRated = async function () {
   try {
     const res = await fetch(
-      "https://api.themoviedb.org/3/tv/popular?language=en-US&page=1",
+      "https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1",
       options
     );
 
@@ -385,10 +394,176 @@ const getSeriesList = async function () {
 
     if (data.results && data.results.length > 0) {
       moviesContainer.innerHTML = "";
+      displayMovies(movies);
+    }
+
+    input.value = "";
+
+    browseSidebar.style.backgroundColor = "";
+    browseSidebar.style.color = "";
+
+    trendingTopNav.classList.remove("nav__active");
+    watchlistTopNav.classList.remove("nav__active");
+
+    searchSidebar.style.display = "none";
+
+    popularSidebar.style.backgroundColor = "";
+    popularSidebar.style.color = "";
+
+    browseSidebar.style.backgroundColor = "";
+    browseSidebar.style.color = "";
+    browseTopNav.classList.remove("nav__active");
+    seriesTopNav.classList.remove("nav__active");
+    trendingSidebar.style.backgroundColor = "";
+    trendingSidebar.style.color = "";
+    watchlistSidebar.style.backgroundColor = "";
+    watchlistSidebar.style.color = "";
+    topRatedSidebar.style.backgroundColor = "";
+    topRatedSidebar.style.color = "";
+
+    upcomingSidebar.style.backgroundColor = "";
+    upcomingSidebar.style.color = "";
+
+    pageName.innerHTML = "Top Rated";
+    topRatedSidebar.style.backgroundColor = "white";
+    topRatedSidebar.style.color = "black";
+
+    searchSidebar.style.backgroundColor = "";
+    searchSidebar.style.color = "";
+
+    seriesSidebar.style.backgroundColor = "";
+    seriesSidebar.style.color = "";
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+const upcoming = async function () {
+  try {
+    const res = await fetch(
+      "https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1",
+      options
+    );
+
+    const data = await res.json();
+
+    if (!res.ok) throw new Error(`${data.message} (${res.status})`);
+
+    movies = data.results.filter(
+      (movie) => movie.poster_path !== null && movie.backdrop_path !== null
+    );
+
+    if (data.results && data.results.length > 0) {
+      moviesContainer.innerHTML = "";
+      displayMovies(movies);
+    }
+
+    input.value = "";
+
+    searchSidebar.style.display = "none";
+
+    pageName.innerHTML = "Upcoming Movies";
+    upcomingSidebar.style.backgroundColor = "white";
+    upcomingSidebar.style.color = "black";
+
+    browseSidebar.style.backgroundColor = "";
+    browseSidebar.style.color = "";
+
+    trendingTopNav.classList.remove("nav__active");
+    browseTopNav.classList.remove("nav__active");
+    watchlistTopNav.classList.remove("nav__active");
+    seriesTopNav.classList.remove("nav__active");
+
+    popularSidebar.style.backgroundColor = "";
+    popularSidebar.style.color = "";
+
+    searchSidebar.style.backgroundColor = "";
+    searchSidebar.style.color = "";
+
+    trendingSidebar.style.backgroundColor = "";
+    trendingSidebar.style.color = "";
+    watchlistSidebar.style.backgroundColor = "";
+    watchlistSidebar.style.color = "";
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+const popular = async function () {
+  try {
+    const res = await fetch(
+      "https://api.themoviedb.org/3/movie/popular?language=en-US&page=1",
+
+      options
+    );
+
+    const data = await res.json();
+
+    if (!res.ok) throw new Error(`${data.message} (${res.status})`);
+
+    movies = data.results.filter(
+      (movie) => movie.poster_path !== null && movie.backdrop_path !== null
+    );
+
+    if (data.results && data.results.length > 0) {
+      moviesContainer.innerHTML = "";
+      displayMovies(movies);
+    }
+
+    input.value = "";
+
+    searchSidebar.style.display = "none";
+
+    pageName.innerHTML = "Popular Movies";
+
+    popularSidebar.style.backgroundColor = "white";
+    popularSidebar.style.color = "black";
+
+    watchlistSidebar.style.backgroundColor = "";
+    watchlistSidebar.style.color = "";
+
+    browseSidebar.style.backgroundColor = "";
+    browseSidebar.style.color = "";
+
+    searchSidebar.style.backgroundColor = "";
+    searchSidebar.style.color = "";
+
+    topRatedSidebar.style.backgroundColor = "";
+    topRatedSidebar.style.color = "";
+
+    trendingTopNav.classList.remove("nav__active");
+    browseTopNav.classList.remove("nav__active");
+    seriesTopNav.classList.remove("nav__active");
+    watchlistTopNav.classList.remove("nav__active");
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+const getSeriesList = async function () {
+  try {
+    const res = await fetch(
+      "https://api.themoviedb.org/3/tv/popular?language=en-US&page=1",
+      options
+    );
+
+    const data = await res.json();
+
+    if (!res.ok) throw new Error(`${data.message} (${res.status})`);
+
+    if (data.results && data.results.length > 0) {
+      moviesContainer.innerHTML = "";
+
+      movies = data.results.filter(
+        (movie) => movie.poster_path !== null && movie.backdrop_path !== null
+      );
+
       displaySeries(movies);
     }
 
     input.value = "";
+
+    searchSidebar.style.display = "none";
 
     pageName.innerHTML = "Tv series";
 
@@ -450,7 +625,7 @@ const displaySeries = function (movies) {
 };
 
 const seriesClick = function (event) {
-  const clickedSeriesName = event.currentTarget.dataset.name;
+  const clickedSeriesName = event.currentTarget.dataset.title;
 
   const clickedSeries = movies.find(
     (movie) => movie.name === clickedSeriesName
@@ -493,159 +668,6 @@ const displaySeriesPopup = function (movie) {
   closePopup.addEventListener("click", () => {
     moviesPopup.style.display = "none";
   });
-};
-
-const topRated = async function () {
-  try {
-    const res = await fetch(
-      "https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1",
-      options
-    );
-
-    const data = await res.json();
-
-    if (!res.ok) throw new Error(`${data.message} (${res.status})`);
-
-    console.log(data);
-
-    movies = data.results.filter(
-      (movie) => movie.poster_path !== null && movie.backdrop_path !== null
-    );
-
-    if (data.results && data.results.length > 0) {
-      moviesContainer.innerHTML = "";
-      displayMovies(movies);
-    }
-
-    input.value = "";
-
-    browseSidebar.style.backgroundColor = "";
-    browseSidebar.style.color = "";
-
-    trendingTopNav.classList.remove("nav__active");
-    browseTopNav.classList.remove("nav__active");
-    watchlistTopNav.classList.remove("nav__active");
-
-    popularSidebar.style.backgroundColor = "";
-    popularSidebar.style.color = "";
-
-    browseSidebar.style.backgroundColor = "";
-    browseSidebar.style.color = "";
-    trendingTopNav.classList.remove("nav__active");
-    browseTopNav.classList.remove("nav__active");
-    trendingSidebar.style.backgroundColor = "";
-    trendingSidebar.style.color = "";
-    topRatedSidebar.style.backgroundColor = "";
-    topRatedSidebar.style.color = "";
-
-    watchlistSidebar.style.backgroundColor = "";
-    watchlistSidebar.style.color = "";
-    watchlistTopNav.classList.remove("nav__active");
-
-    upcomingSidebar.style.backgroundColor = "";
-    upcomingSidebar.style.color = "";
-
-    pageName.innerHTML = "Top Rated";
-    topRatedSidebar.style.backgroundColor = "white";
-    topRatedSidebar.style.color = "black";
-
-    searchSidebar.style.backgroundColor = "";
-    searchSidebar.style.color = "";
-  } catch (err) {
-    console.error(err);
-  }
-};
-
-const upcoming = async function () {
-  try {
-    const res = await fetch(
-      "https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1",
-      options
-    );
-
-    const data = await res.json();
-
-    if (!res.ok) throw new Error(`${data.message} (${res.status})`);
-
-    console.log(data);
-
-    movies = data.results.filter(
-      (movie) => movie.poster_path !== null && movie.backdrop_path !== null
-    );
-
-    if (data.results && data.results.length > 0) {
-      moviesContainer.innerHTML = "";
-      displayMovies(movies);
-    }
-
-    input.value = "";
-
-    pageName.innerHTML = "Upcoming Movies";
-    upcomingSidebar.style.backgroundColor = "white";
-    upcomingSidebar.style.color = "black";
-
-    browseSidebar.style.backgroundColor = "";
-    browseSidebar.style.color = "";
-
-    trendingTopNav.classList.remove("nav__active");
-    browseTopNav.classList.remove("nav__active");
-    watchlistTopNav.classList.remove("nav__active");
-
-    popularSidebar.style.backgroundColor = "";
-    popularSidebar.style.color = "";
-
-    searchSidebar.style.backgroundColor = "";
-    searchSidebar.style.color = "";
-  } catch (err) {
-    console.error(err);
-  }
-};
-
-const popular = async function () {
-  try {
-    const res = await fetch(
-      "https://api.themoviedb.org/3/movie/popular?language=en-US&page=1",
-
-      options
-    );
-
-    const data = await res.json();
-
-    if (!res.ok) throw new Error(`${data.message} (${res.status})`);
-
-    console.log(data);
-
-    movies = data.results.filter(
-      (movie) => movie.poster_path !== null && movie.backdrop_path !== null
-    );
-
-    if (data.results && data.results.length > 0) {
-      moviesContainer.innerHTML = "";
-      displayMovies(movies);
-    }
-
-    input.value = "";
-
-    pageName.innerHTML = "Popular Movies";
-
-    popularSidebar.style.backgroundColor = "white";
-    popularSidebar.style.color = "black";
-
-    watchlistSidebar.style.backgroundColor = "";
-    watchlistSidebar.style.color = "";
-
-    browseSidebar.style.backgroundColor = "";
-    browseSidebar.style.color = "";
-
-    searchSidebar.style.backgroundColor = "";
-    searchSidebar.style.color = "";
-
-    trendingTopNav.classList.remove("nav__active");
-    browseTopNav.classList.remove("nav__active");
-    watchlistTopNav.classList.remove("nav__active");
-  } catch (err) {
-    console.error(err);
-  }
 };
 
 seriesTopNav.addEventListener("click", () => {
@@ -691,3 +713,5 @@ trendingSidebar.addEventListener("click", () => {
 browseSidebar.addEventListener("click", () => {
   discoverMovies();
 });
+
+discoverMovies();
