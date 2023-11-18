@@ -3,7 +3,7 @@
 html,
 body {
   margin: 0;
-  background: white;
+  background: #000;
   font-family: "Montserrat", helvetica, arial, sans-serif;
   font-size: 14px;
   font-weight: 400;
@@ -21,7 +21,7 @@ body {
   top: 0;
   height: 100%;
   width: 78px;
-  background: #11101d;
+  border-right: 1px solid rgba(255, 255, 255, 0.22);
   padding: 6px 14px;
   z-index: 99;
   transition: all 0.5s ease;
@@ -408,12 +408,12 @@ button {
 .movie__card {
   position: relative;
   height: 23rem;
-  background-color: #b0afaf;
   width: 20rem;
   border-radius: 5px;
   cursor: pointer;
 
   border: 1px solid rgba(255, 255, 255, 0.22);
+  transition: transform 0.5s ease-in-out;
 }
 
 .movie__card img {
@@ -423,6 +423,11 @@ button {
   border-radius: 5px;
   transition: all 0.3s;
   position: absolute;
+  overflow: hidden;
+}
+
+.movie__card:hover {
+  transform: scale(1.02);
 }
 
 .div__detail {
@@ -525,4 +530,19 @@ button {
   padding: 4px;
   border-radius: 4px;
   width: 44%;
+}
+
+.success {
+  display: none;
+  position: fixed;
+  top: 7.4rem;
+  right: 6rem;
+  background: #198754;
+  padding: 14px;
+  border-radius: 4px;
+  width: auto;
+  z-index: 100;
+  height: auto;
+  font-size: 1.2rem;
+  color: #fff;
 }

@@ -8,8 +8,10 @@
       href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
     />
     <link rel="stylesheet" href="./style.css" />
+    <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
     <script defer src="./script.js"></script>
-    <title>App</title>
+
+    <title>CinemaSync</title>
   </head>
   <body>
     <div class="sidebar">
@@ -33,6 +35,14 @@
           </a>
           <span class="tooltip">Trending</span>
         </li>
+
+        <li>
+          <a onclick="getSeriesList()">
+            <i class="bx bx-tv"></i>
+          </a>
+          <span class="tooltip">Tv Series</span>
+        </li>
+
         <li>
           <a onclick="getWatchlist()">
             <i class="bx bx-movie-play"></i>
@@ -41,31 +51,22 @@
         </li>
 
         <li>
-          <a href="#">
-            <i class="bx bx-folder"></i>
+          <a onclick="topRated()">
+            <i class='bx bx-trophy'></i>
           </a>
-          <span class="tooltip">Files</span>
+          <span class="tooltip">Top Rated</span>
         </li>
         <li>
-          <a href="#">
-            <i class="bx bx-cart-alt"></i>
-            <span class="links_name">Order</span>
+          <a onclick="popular()">
+            <i class='bx bxs-hot' ></i>
           </a>
-          <span class="tooltip">Order</span>
+          <span class="tooltip">Popular</span>
         </li>
         <li>
-          <a href="#">
-            <i class="bx bx-heart"></i>
-            <span class="links_name">Saved</span>
+          <a onclick="upcoming()">
+            <i class='bx bxs-hourglass' ></i>
           </a>
-          <span class="tooltip">Saved</span>
-        </li>
-        <li>
-          <a href="#">
-            <i class="bx bx-cog"></i>
-            <span class="links_name">Setting</span>
-          </a>
-          <span class="tooltip">Setting</span>
+          <span class="tooltip">Upcoming</span>
         </li>
       </ul>
     </div>
@@ -83,7 +84,7 @@
           <span class="link" id="watchlist" onclick="getWatchlist()"
             >Watchlist</span
           >
-          <span class="link" id="series">Tv series</span>
+          <span class="link" id="series" onclick="getSeriesList()">Tv series</span>
           <input placeholder="Search.." class="input" type="search" />
         </div>
       </header>
@@ -93,6 +94,12 @@
       <div class="cards"></div>
     </section>
 
+    <!-- <div class="overlay">
+      <div class="movie_card">
+       <input type="search" class="big__search">
+      </div> -->
+
     <section class="popup"></section>
+    <h5 class="success">Added to Watchlist &#10004;</h5>
   </body>
 </html>

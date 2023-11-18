@@ -4,10 +4,15 @@ const apiKey = "7eae2080d0b3d02dcdb56c3aba64a598";
 const moviesContainer = document.querySelector(".cards");
 const moviesPopup = document.querySelector(".popup");
 const input = document.querySelector(".input");
+const success = document.querySelector(".success");
 
 const pageName = document.querySelector(".name");
 const trendingSidebar = document.querySelector(".bx-trending-up");
 const searchSidebar = document.querySelector(".bx-search");
+const topRatedSidebar = document.querySelector(".bx-trophy");
+const upcomingSidebar = document.querySelector(".bxs-hourglass");
+const popularSidebar = document.querySelector(".bxs-hot");
+const seriesSidebar = document.querySelector(".bx-tv");
 
 const trendingTopNav = document.getElementById("trending");
 const browseSidebar = document.querySelector(".bx-compass");
@@ -15,6 +20,8 @@ const browseTopNav = document.getElementById("browse");
 
 const watchlistSidebar = document.querySelector(".bx-movie-play");
 const watchlistTopNav = document.getElementById("watchlist");
+
+const seriesTopNav = document.getElementById("series");
 
 const options = {
   method: "GET",
@@ -33,7 +40,6 @@ const discoverMovies = async function () {
     );
 
     const data = await res.json();
-    // console.log(data);
 
     if (!res.ok) throw new Error(`${data.message} (${res.status})`);
 
@@ -51,10 +57,22 @@ const discoverMovies = async function () {
     trendingSidebar.style.backgroundColor = "";
     trendingSidebar.style.color = "";
     trendingTopNav.classList.remove("nav__active");
-    
+
+    topRatedSidebar.style.backgroundColor = "";
+    topRatedSidebar.style.color = "";
+
     watchlistSidebar.style.backgroundColor = "";
     watchlistSidebar.style.color = "";
     watchlistTopNav.classList.remove("nav__active");
+
+    upcomingSidebar.style.backgroundColor = "";
+    upcomingSidebar.style.color = "";
+
+    popularSidebar.style.backgroundColor = "";
+    popularSidebar.style.color = "";
+
+    searchSidebar.style.backgroundColor = "";
+    searchSidebar.style.color = "";
   } catch (err) {
     console.error(err);
   }
@@ -63,7 +81,9 @@ const discoverMovies = async function () {
 const displayMovies = function (movies) {
   movies.forEach((movie) => {
     const markup = `
-      <div class="movie__card" data-title="${movie.title}">
+      <div class="movie__card" data-title="${movie.title}" data-id="${
+      movie.id
+    }">
         <img src="https://image.tmdb.org/t/p/w500/${movie.poster_path}" alt="${
       movie.title
     }">
@@ -72,7 +92,9 @@ const displayMovies = function (movies) {
           <div class="movie__bottom">
           <span>${movie.release_date.substring(0, 4)}</span>
           <span>
-          <i class='bx bx-plus-circle'></i>
+          <i class='bx bx-plus-circle' onclick="addToWatchlist(event, ${
+            movie.id
+          });"></i>
           <h5 class='hover'>Add to Watchlist</h5>
           
           </span>
@@ -154,20 +176,32 @@ const trendingMovies = async function () {
     }
     input.value = "";
 
-    pageName.innerHTML = "Trending";
-    trendingSidebar.style.backgroundColor = "white";
-    trendingSidebar.style.color = "black";
     browseSidebar.style.backgroundColor = "";
     browseSidebar.style.color = "";
     trendingTopNav.classList.add("nav__active");
     browseTopNav.classList.remove("nav__active");
     trendingSidebar.style.backgroundColor = "";
     trendingSidebar.style.color = "";
-    trendingTopNav.classList.remove("nav__active");
-    
+    topRatedSidebar.style.backgroundColor = "";
+    topRatedSidebar.style.color = "";
+
     watchlistSidebar.style.backgroundColor = "";
     watchlistSidebar.style.color = "";
-    watchlistTopNav.classList.remove("nav__active")
+    watchlistTopNav.classList.remove("nav__active");
+
+    popularSidebar.style.backgroundColor = "";
+    popularSidebar.style.color = "";
+
+    pageName.innerHTML = "Trending Movies";
+    trendingSidebar.style.backgroundColor = "white";
+    trendingSidebar.style.color = "black";
+    trendingTopNav.classList.add("nav__active");
+
+    upcomingSidebar.style.backgroundColor = "";
+    upcomingSidebar.style.color = "";
+
+    searchSidebar.style.backgroundColor = "";
+    searchSidebar.style.color = "";
   } catch (err) {
     console.error(err);
   }
@@ -205,6 +239,9 @@ const searchMovies = async function (query) {
 
     trendingTopNav.classList.remove("nav__active");
     browseTopNav.classList.remove("nav__active");
+
+    popularSidebar.style.backgroundColor = "";
+    popularSidebar.style.color = "";
   } catch (err) {
     console.error(err);
   }
@@ -217,9 +254,9 @@ input.addEventListener("keydown", function (event) {
   }
 });
 
-const addToWatchlist = async function (movieIdToAdd) {
+const addToWatchlist = async function (event, movieIdToAdd) {
   try {
-    // const movieIdToAdd = "your_movie_id"; // Replace with the actual movie ID
+    event.stopPropagation();
     const options = {
       method: "POST",
       headers: {
@@ -240,16 +277,19 @@ const addToWatchlist = async function (movieIdToAdd) {
       options
     );
 
+    success.style.display = "block";
+
+    setTimeout(() => {
+      success.style.display = "none";
+    }, 3000);
+
     const data = await res.json();
 
     if (!res.ok) throw new Error(`${data.message} (${res.status})`);
-
-    console.log(data);
   } catch (err) {
     console.error(err);
   }
 };
-// addToWatchlist(872585);
 
 const getWatchlist = async function (movieIdToAdd) {
   try {
@@ -277,18 +317,28 @@ const getWatchlist = async function (movieIdToAdd) {
     watchlistSidebar.style.backgroundColor = "white";
     watchlistSidebar.style.color = "black";
 
+    searchSidebar.style.backgroundColor = "";
+    searchSidebar.style.color = "";
+
+    popularSidebar.style.backgroundColor = "";
+    popularSidebar.style.color = "";
+
     browseSidebar.style.backgroundColor = "";
     browseSidebar.style.color = "";
 
     trendingTopNav.classList.remove("nav__active");
     browseTopNav.classList.remove("nav__active");
     watchlistTopNav.classList.add("nav__active");
-    console.log(data);
+
+    upcomingSidebar.style.backgroundColor = "";
+    upcomingSidebar.style.color = "";
+
+    topRatedSidebar.style.backgroundColor = "";
+    topRatedSidebar.style.color = "";
   } catch (err) {
     console.error(err);
   }
 };
-
 
 const displayWatchlist = function (movies) {
   movies.forEach((movie) => {
@@ -316,6 +366,294 @@ const displayWatchlist = function (movies) {
   movieCards.forEach((card) => {
     card.addEventListener("click", cardClick);
   });
+};
+
+const getSeriesList = async function () {
+  try {
+    const res = await fetch(
+      "https://api.themoviedb.org/3/tv/popular?language=en-US&page=1",
+      options
+    );
+
+    const data = await res.json();
+
+    if (!res.ok) throw new Error(`${data.message} (${res.status})`);
+
+    
+
+    movies = data.results.filter(
+      (movie) => movie.poster_path !== null && movie.backdrop_path !== null
+    );
+
+    if (data.results && data.results.length > 0) {
+      moviesContainer.innerHTML = "";
+      displaySeries(movies);
+    }
+
+    input.value = "";
+
+    pageName.innerHTML = "Tv series";
+    
+
+    popularSidebar.style.backgroundColor = "";
+    popularSidebar.style.color = "";
+
+    browseSidebar.style.backgroundColor = "";
+    browseSidebar.style.color = "";
+
+    searchSidebar.style.backgroundColor = "";
+    searchSidebar.style.color = "";
+
+    trendingSidebar.style.backgroundColor = "";
+    trendingSidebar.style.color = "";
+
+    trendingTopNav.classList.remove("nav__active");
+    browseTopNav.classList.remove("nav__active");
+    watchlistTopNav.classList.remove("nav__active");
+    seriesTopNav.classList.add("nav__active");
+
+    
+    watchlistSidebar.style.backgroundColor = "";
+    watchlistSidebar.style.color = "";
+    
+    seriesSidebar.style.backgroundColor = "white";
+    seriesSidebar.style.color = "black";
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+
+const displaySeries = function (movies) {
+  movies.forEach((movie) => {
+    const markup = `
+      <div class="movie__card" data-title="${movie.name}" data-id="${movie.id}">
+        <img src="https://image.tmdb.org/t/p/w500/${movie.poster_path}" alt="${
+      movie.name
+    }">
+        <div class="div__detail">
+          <h3>${movie.name}</h3>
+          <div class="movie__bottom">
+            <span>${movie.first_air_date.substring(0, 4)}</span>
+            <span>
+              <i class='bx bx-plus-circle' onclick="addToWatchlist(event, ${
+                movie.id
+              });"></i>
+              <h5 class='hover'>Add to Watchlist</h5>
+            </span>
+          </div>
+        </div>
+      </div>
+    `;
+    moviesContainer.insertAdjacentHTML("beforeend", markup);
+  });
+
+  const movieCards = document.querySelectorAll(".movie__card");
+  movieCards.forEach((card) => {
+    card.addEventListener("click", seriesClick);
+  });
+};
+
+const seriesClick = function (event) {
+  const clickedSeriesName = event.currentTarget.dataset.name;
+
+  const clickedSeries = movies.find(
+    (movie) => movie.name === clickedSeriesName
+  );
+
+  moviesPopup.innerHTML = "";
+
+  displaySeriesPopup(clickedSeries);
+  moviesPopup.style.display = "";
+};
+
+const displaySeriesPopup = function (movie) {
+  const popupMarkup = `
+  <div class="overlay">
+    <div class="movie_card">
+      <div class="info_section">
+      <span class="close">&times;</span>
+
+        <div class="movie_header">
+          <img class="locandina" src="https://image.tmdb.org/t/p/w500/${
+            movie.poster_path
+          }" alt="${movie.name}">
+          <h1>${movie.name}</h1>
+          <h4>Released: ${movie.first_air_date.substring(0, 4)}</h4>
+        </div>
+        <div class="movie_desc">
+          <p class="text">${movie.overview}</p>
+        </div>
+      </div>
+      <div class="blur_back ave_back" style='background: url("https://image.tmdb.org/t/p/w500/${
+        movie.backdrop_path
+      }"); background-size: cover; background-repeat: no-repeat;'></div>
+    </div>
+    </div>
+  `;
+
+  moviesPopup.insertAdjacentHTML("afterbegin", popupMarkup);
+
+  const closePopup = document.querySelector(".close");
+  closePopup.addEventListener("click", () => {
+    moviesPopup.style.display = "none";
+  });
+};
+
+const topRated = async function () {
+  try {
+    const res = await fetch(
+      "https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1",
+      options
+    );
+
+    const data = await res.json();
+
+    if (!res.ok) throw new Error(`${data.message} (${res.status})`);
+
+    console.log(data);
+
+    movies = data.results.filter(
+      (movie) => movie.poster_path !== null && movie.backdrop_path !== null
+    );
+
+    if (data.results && data.results.length > 0) {
+      moviesContainer.innerHTML = "";
+      displayMovies(movies);
+    }
+
+    input.value = "";
+
+    browseSidebar.style.backgroundColor = "";
+    browseSidebar.style.color = "";
+
+    trendingTopNav.classList.remove("nav__active");
+    browseTopNav.classList.remove("nav__active");
+    watchlistTopNav.classList.remove("nav__active");
+
+    popularSidebar.style.backgroundColor = "";
+    popularSidebar.style.color = "";
+
+    browseSidebar.style.backgroundColor = "";
+    browseSidebar.style.color = "";
+    trendingTopNav.classList.remove("nav__active");
+    browseTopNav.classList.remove("nav__active");
+    trendingSidebar.style.backgroundColor = "";
+    trendingSidebar.style.color = "";
+    topRatedSidebar.style.backgroundColor = "";
+    topRatedSidebar.style.color = "";
+
+    watchlistSidebar.style.backgroundColor = "";
+    watchlistSidebar.style.color = "";
+    watchlistTopNav.classList.remove("nav__active");
+
+    upcomingSidebar.style.backgroundColor = "";
+    upcomingSidebar.style.color = "";
+
+    pageName.innerHTML = "Top Rated";
+    topRatedSidebar.style.backgroundColor = "white";
+    topRatedSidebar.style.color = "black";
+
+    searchSidebar.style.backgroundColor = "";
+    searchSidebar.style.color = "";
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+
+const upcoming = async function () {
+  try {
+    const res = await fetch(
+      "https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1",
+      options
+    );
+
+    const data = await res.json();
+
+    if (!res.ok) throw new Error(`${data.message} (${res.status})`);
+
+    console.log(data);
+
+    movies = data.results.filter(
+      (movie) => movie.poster_path !== null && movie.backdrop_path !== null
+    );
+
+    if (data.results && data.results.length > 0) {
+      moviesContainer.innerHTML = "";
+      displayMovies(movies);
+    }
+
+    input.value = "";
+
+    pageName.innerHTML = "Upcoming Movies";
+    upcomingSidebar.style.backgroundColor = "white";
+    upcomingSidebar.style.color = "black";
+
+    browseSidebar.style.backgroundColor = "";
+    browseSidebar.style.color = "";
+
+    trendingTopNav.classList.remove("nav__active");
+    browseTopNav.classList.remove("nav__active");
+    watchlistTopNav.classList.remove("nav__active");
+
+    popularSidebar.style.backgroundColor = "";
+    popularSidebar.style.color = "";
+
+    searchSidebar.style.backgroundColor = "";
+    searchSidebar.style.color = "";
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+
+
+const popular = async function () {
+  try {
+    const res = await fetch(
+      "https://api.themoviedb.org/3/movie/popular?language=en-US&page=1",
+
+      options
+    );
+
+    const data = await res.json();
+
+    if (!res.ok) throw new Error(`${data.message} (${res.status})`);
+
+    console.log(data);
+
+    movies = data.results.filter(
+      (movie) => movie.poster_path !== null && movie.backdrop_path !== null
+    );
+
+    if (data.results && data.results.length > 0) {
+      moviesContainer.innerHTML = "";
+      displayMovies(movies);
+    }
+
+    input.value = "";
+
+    pageName.innerHTML = "Popular Movies";
+
+    popularSidebar.style.backgroundColor = "white";
+    popularSidebar.style.color = "black";
+
+    watchlistSidebar.style.backgroundColor = "";
+    watchlistSidebar.style.color = "";
+
+    browseSidebar.style.backgroundColor = "";
+    browseSidebar.style.color = "";
+
+    searchSidebar.style.backgroundColor = "";
+    searchSidebar.style.color = "";
+
+    trendingTopNav.classList.remove("nav__active");
+    browseTopNav.classList.remove("nav__active");
+    watchlistTopNav.classList.remove("nav__active");
+  } catch (err) {
+    console.error(err);
+  }
 };
 
 
