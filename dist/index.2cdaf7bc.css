@@ -1,0 +1,475 @@
+@import "https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap";
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Poppins, sans-serif;
+}
+
+.sidebar {
+  z-index: 99;
+  background: #11101d;
+  width: 78px;
+  height: 100%;
+  padding: 6px 14px;
+  transition: all .5s;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.logo {
+  width: auto;
+  height: 1.4rem;
+}
+
+.sidebar i {
+  color: #fff;
+  text-align: center;
+  min-width: 50px;
+  height: 60px;
+  font-size: 28px;
+  line-height: 60px;
+}
+
+.sidebar .nav-list {
+  flex-direction: column;
+  place-content: center;
+  height: 100%;
+  display: flex;
+}
+
+.sidebar li {
+  margin: 8px 0;
+  list-style: none;
+  position: relative;
+}
+
+.sidebar li .tooltip {
+  z-index: 3;
+  opacity: 0;
+  white-space: nowrap;
+  pointer-events: none;
+  background: #fff;
+  border-radius: 4px;
+  padding: 6px 12px;
+  font-size: 15px;
+  font-weight: 400;
+  transition: all;
+  position: absolute;
+  top: -20px;
+  left: calc(100% + 15px);
+  box-shadow: 0 5px 10px #0000004d;
+}
+
+.sidebar li:hover .tooltip {
+  opacity: 1;
+  pointer-events: auto;
+  transition: all .4s;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.sidebar li a {
+  background: #11101d;
+  border-radius: 12px;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  transition: all .4s;
+  display: flex;
+}
+
+.sidebar li a:hover {
+  background: #fff;
+}
+
+.sidebar li a .links_name {
+  color: #fff;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  font-size: 15px;
+  font-weight: 400;
+  transition: all .4s;
+}
+
+.sidebar li a:hover .links_name, .sidebar li a:hover i {
+  color: #11101d;
+  transition: all .5s;
+}
+
+.sidebar li i {
+  border-radius: 12px;
+  height: 50px;
+  font-size: 22px;
+  line-height: 50px;
+}
+
+.sidebar li.profile {
+  background: #1d1b31;
+  width: 78px;
+  height: 60px;
+  padding: 10px 14px;
+  transition: all .5s;
+  position: fixed;
+  bottom: -8px;
+  left: 0;
+  overflow: hidden;
+}
+
+.sidebar li .profile-details {
+  flex-wrap: nowrap;
+  align-items: center;
+  display: flex;
+}
+
+.sidebar li img {
+  object-fit: cover;
+  border-radius: 6px;
+  width: 45px;
+  height: 45px;
+  margin-right: 10px;
+}
+
+.sidebar li.profile .name, .sidebar li.profile .job {
+  color: #fff;
+  white-space: nowrap;
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.sidebar li.profile .job {
+  font-size: 12px;
+}
+
+.sidebar .profile #log_out {
+  background: #1d1b31;
+  border-radius: 0;
+  width: 100%;
+  height: 60px;
+  line-height: 60px;
+  transition: all .5s;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+}
+
+.sidebar.open .profile #log_out {
+  background: none;
+  width: 50px;
+}
+
+.home-section {
+  z-index: 2;
+  background: #000;
+  width: calc(100% - 78px);
+  min-height: 100vh;
+  transition: all .5s;
+  position: relative;
+  top: 0;
+  left: 78px;
+}
+
+.home-section .text {
+  color: #11101d;
+  margin: 18px;
+  font-size: 25px;
+  font-weight: 500;
+  display: inline-block;
+}
+
+@media (width <= 420px) {
+  .sidebar li .tooltip {
+    display: none;
+  }
+}
+
+header {
+  text-transform: capitalize;
+  background-color: #fff;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  display: flex;
+}
+
+header > div {
+  align-items: center;
+  gap: 2rem;
+  font-size: 1.2rem;
+  display: flex;
+}
+
+.container {
+  padding-bottom: 3rem;
+}
+
+img {
+  -webkit-box-reflect: below 5px linear-gradient(transparent, transparent, #0006);
+  -o-transition: all .5s ease;
+  transition: all .5s;
+}
+
+.container img:hover {
+  transform: scale(1.1);
+}
+
+.last {
+  margin-top: 6.5rem;
+}
+
+.featured_wrapper {
+  position: relative;
+}
+
+.featured_wrapper img {
+  -o-object-fit: cover;
+  object-fit: cover;
+  -o-object-position: top;
+  object-position: top;
+  width: 100%;
+  height: 100vh;
+}
+
+.title_wrapper {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 20px 40px;
+  position: absolute;
+  bottom: 2rem;
+  left: 2rem;
+}
+
+.title_wrapper h1 {
+  width: 70%;
+}
+
+button {
+  outline: none;
+  padding: .5rem 3rem;
+  font-size: 18px;
+  color: #fff !important;
+  background: #f40612 !important;
+  border: 0 !important;
+}
+
+@media (width <= 768px) {
+  .title_wrapper {
+    text-align: center;
+    left: 0;
+  }
+
+  .title_wrapper h1 {
+    width: 100%;
+    font-size: 32px !important;
+  }
+
+  .container {
+    padding: 20px;
+  }
+}
+
+@media (width <= 480px) {
+  .column.is-one-quarter img {
+    width: 100%;
+    margin-bottom: 7rem;
+  }
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+html, body {
+  background: #fff;
+  margin: 0;
+  font-family: Montserrat, helvetica, arial, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.link {
+  text-align: center;
+  color: #777;
+  padding: 10px;
+  text-decoration: none;
+  display: block;
+}
+
+.movie_card {
+  border-radius: 10px;
+  width: 800px;
+  height: 350px;
+  margin: 80px auto;
+  transition: all .4s;
+  display: block;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 120px -25px #00000080;
+}
+
+.movie_card:hover {
+  transition: all .4s;
+  transform: scale(1.02);
+  box-shadow: 0 0 80px -25px #00000080;
+}
+
+.movie_card .info_section {
+  background-blend-mode: multiply;
+  z-index: 2;
+  border-radius: 10px;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.movie_card .info_section .movie_header {
+  height: 40%;
+  padding: 25px;
+  position: relative;
+}
+
+.movie_card .info_section .movie_header h1 {
+  color: #000;
+  font-weight: 400;
+}
+
+.movie_card .info_section .movie_header h4 {
+  color: #555;
+  font-weight: 400;
+}
+
+.movie_card .info_section .movie_header .minutes {
+  color: #555;
+  border: 1px solid #0000000d;
+  border-radius: 5px;
+  margin-top: 15px;
+  padding: 5px;
+  display: inline-block;
+}
+
+.movie_card .info_section .movie_header .type {
+  color: #959595;
+  margin-left: 10px;
+  display: inline-block;
+}
+
+.movie_card .info_section .movie_header .locandina {
+  float: left;
+  height: 120px;
+  margin-right: 20px;
+  position: relative;
+  box-shadow: 0 0 20px -10px #00000080;
+}
+
+.movie_card .info_section .movie_desc {
+  height: 50%;
+  padding: 25px;
+}
+
+.movie_card .info_section .movie_desc .text {
+  color: #545454;
+}
+
+.movie_card .info_section .movie_social {
+  height: 10%;
+  padding-bottom: 20px;
+  padding-left: 15px;
+}
+
+.movie_card .info_section .movie_social ul {
+  padding: 0;
+  list-style: none;
+}
+
+.movie_card .info_section .movie_social ul li {
+  color: #0000004d;
+  margin: 0 10px;
+  transition: color .3s .15s;
+  display: inline-block;
+}
+
+.movie_card .info_section .movie_social ul li:hover {
+  color: #000000b3;
+  transition: color .3s;
+}
+
+.movie_card .info_section .movie_social ul li i {
+  cursor: pointer;
+  font-size: 19px;
+}
+
+.movie_card .blur_back {
+  z-index: 1;
+  background-size: cover;
+  border-radius: 11px;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+@media screen and (width >= 768px) {
+  .movie_header {
+    width: 65%;
+  }
+
+  .movie_desc {
+    width: 50%;
+  }
+
+  .info_section {
+    background: linear-gradient(to right, #e5e6e6 50%, #0000 100%);
+  }
+
+  .blur_back {
+    width: 80%;
+    background-position: -100% 10% !important;
+  }
+}
+
+@media screen and (width <= 768px) {
+  .movie_card {
+    width: 95%;
+    height: auto;
+    min-height: 350px;
+    margin: 70px auto;
+  }
+
+  .blur_back {
+    width: 100%;
+    background-position: 50% !important;
+  }
+
+  .movie_header {
+    width: 100%;
+    margin-top: 85px;
+  }
+
+  .movie_desc {
+    width: 100%;
+  }
+
+  .info_section {
+    background: linear-gradient(to top, #e5e6e6 50%, #0000 100%);
+    display: inline-grid;
+  }
+}
+
+.bright_back {
+  background: url("https://occ-0-2433-448.1.nflxso.net/art/cd5c9/3e192edf2027c536e25bb5d3b6ac93ced77cd5c9.jpg");
+}
+
+.tomb_back {
+  background: url("https://fsmedia.imgix.net/cd/c9/5e/ba/4817/4d9a/93f0/c776ec32ecbc/lara-crofts-neck-looks-unnatural-in-the-new-poster-for-tomb-raider.png");
+}
+
+.ave_back {
+  background: url("https://www.gannett-cdn.com/-mm-/c03fd140debe8ad4c05cf81a5cad7ad61a12ce52/c=0-1580-2985-3266&r=x803&c=1600x800/local/-/media/2017/06/09/USATODAY/USATODAY/636326272873599176-Black-Panther-Teaser.jpg");
+}
+
+/*# sourceMappingURL=index.2cdaf7bc.css.map */
