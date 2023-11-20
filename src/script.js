@@ -170,10 +170,10 @@ const displayPopup = function (movie) {
   const movieCard = document.querySelector(".movie_card");
 
   closePopup.addEventListener("click", () => {
-    movieCard.style.animation = "holeOut 1s ease";
+    movieCard.style.animation = "holeOut .5s ease";
     setTimeout(() => {
       moviesPopup.style.display = "none";
-    }, 900);
+    }, 400);
   });
 };
 

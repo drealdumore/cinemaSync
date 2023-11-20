@@ -1,5 +1,5 @@
-# MDB
-Movie Explorer is a user-friendly platform that harnesses the power of The Movie Database (TMDb) API to offer an immersive and comprehensive movie exploration experience. Crafted with simplicity and functionality in mind, this app empowers users to effortlessly discover, explore, and stay updated on their favorite movies.
+# cinemaSync
+cinemaSync is a user-friendly platform that harnesses the power of The Movie Database (TMDb) API to offer an immersive and comprehensive movie exploration experience. Crafted with simplicity and functionality in mind, this app empowers users to effortlessly discover, explore, and stay updated on their favorite movies.
 Key Features:
 1. Intuitive Movie Search:
 

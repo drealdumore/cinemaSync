@@ -55,7 +55,7 @@ body {
 }
 
 .sidebar.open li {
-  animation: slideLeftReturn 1s ease;
+  animation: slideLeftReturn .5s ease;
 }
 
 .goToTop {
@@ -230,7 +230,7 @@ header > div > span {
   border-radius: 10px;
   transition: all 0.4s;
   box-shadow: 0px 0px 120px -25px rgba(0, 0, 0, 0.5);
-  animation: swashIn 1s ease;
+  animation: swashIn .5s ease;
 
   /* &:hover {
     transform: scale(1.02);
@@ -672,7 +672,8 @@ header > div > span {
   }
 }
 
-@media only screen and (min-width: 365px) and (max-width: 576px) {
+/* @media only screen and (min-width: 365px) and (max-width: 576px) { */
+@media only screen and (max-width: 576px) {
   .cards {
     gap: 1rem;
     display: grid;
@@ -692,6 +693,10 @@ header > div > span {
   .hover {
     left: 3.3rem;
     width: max-content;
+  }
+
+  .div__detail h3 {
+    font-size: 100%;
   }
 }
 
