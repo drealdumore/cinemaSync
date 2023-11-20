@@ -32,6 +32,7 @@ const watchlistLink = document.getElementById("watchlistLink");
 const topRatedLink = document.getElementById("topRatedLink");
 const popularLink = document.getElementById("popularLink");
 const upcomingLink = document.getElementById("upcomingLink");
+const goToTop = document.querySelector(".goToTop");
 
 const options = {
   method: "GET",
@@ -783,3 +784,21 @@ function menuBtnChange() {
     closeBtn.classList.replace("bx-x", "bx-menu");
   }
 }
+
+window.onscroll = function () {
+  scrollFunction();
+};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    goToTop.style.display = "block";
+  } else {
+    goToTop.style.display = "none";
+  }
+}
+
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+goToTop.addEventListener("click", scrollToTop);

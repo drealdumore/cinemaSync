@@ -765,3 +765,30 @@ header > div > span {
 .sidebar.open li {
   animation: slideLeftReturn 1s ease;
 }
+
+
+.goToTop {
+  /* background-color: red;
+  padding: .1rem;
+  position: absolute;
+  top: 2rem;
+  z-index: 100;
+  border-radius: 20px; */
+
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  z-index: 100;
+
+  padding: 10px;
+  cursor: pointer;
+}
+
+.goToTop i {
+  font-size: 3rem;
+}
