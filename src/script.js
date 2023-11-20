@@ -66,7 +66,6 @@ const discoverMovies = async function () {
     browseSidebar.style.backgroundColor = "white";
     browseSidebar.style.color = "black";
 
-    
     browseTopNav.classList.add("nav__active");
     trendingSidebar.style.backgroundColor = "";
     trendingSidebar.style.color = "";
@@ -167,8 +166,13 @@ const displayPopup = function (movie) {
   moviesPopup.insertAdjacentHTML("afterbegin", popupMarkup);
 
   const closePopup = document.querySelector(".close");
+  const movieCard = document.querySelector(".movie_card");
+
   closePopup.addEventListener("click", () => {
-    moviesPopup.style.display = "none";
+    movieCard.style.animation = "holeOut 1s ease";
+    setTimeout(() => {
+      moviesPopup.style.display = "none";
+    }, 900);
   });
 };
 
@@ -736,7 +740,6 @@ trendingTopNav.addEventListener("click", () => {
 browseTopNav.addEventListener("click", () => {
   discoverMovies();
 });
-
 
 browseLink.addEventListener("click", () => {
   discoverMovies();
