@@ -54,6 +54,29 @@ body {
   backdrop-filter: blur(50px);
 }
 
+.sidebar.open li {
+  animation: slideLeftReturn 1s ease;
+}
+
+.goToTop {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #fff;
+  color: #000;
+  border: none;
+  border-radius: 5px;
+  z-index: 2;
+
+  padding: 8px;
+  cursor: pointer;
+}
+
+.goToTop i {
+  font-size: 3rem;
+}
+
 .sidebar i {
   color: #fff;
   height: 60px;
@@ -208,7 +231,6 @@ header > div > span {
   transition: all 0.4s;
   box-shadow: 0px 0px 120px -25px rgba(0, 0, 0, 0.5);
   animation: swashIn 1s ease;
-
 
   /* &:hover {
     transform: scale(1.02);
@@ -495,7 +517,7 @@ header > div > span {
   background: #000;
   padding: 4px;
   border-radius: 4px;
-  width: 44%;
+  width: max-content;
 }
 
 .success {
@@ -516,12 +538,13 @@ header > div > span {
 .menu__icon {
   font-size: 32px;
   display: none;
+  cursor: pointer;
 }
 
 @media only screen and (max-width: 991px) {
   .hover {
     left: 8.8rem;
-    width: 48%;
+    width: max-content;
   }
 
   header > div {
@@ -633,11 +656,19 @@ header > div > span {
   .menu__icon {
     display: block;
   }
+
+  .goToTop {
+    padding: 5px;
+  }
 }
 
 @media only screen and (max-width: 868px) {
   .movie__card {
     width: 16rem;
+  }
+
+  .goToTop {
+    padding: 4px;
   }
 }
 
@@ -649,27 +680,19 @@ header > div > span {
     padding: 1rem;
   }
 
+  .goToTop {
+    padding: 3px;
+  }
+
   .movie__card {
     width: 101%;
     height: 18rem;
   }
 
   .hover {
-    left: 6rem;
-    width: 58%;
+    left: 3.3rem;
+    width: max-content;
   }
- 
-}
-
-.sidebar li a .links_name {
-  color: #fff;
-  font-size: 15px;
-  font-weight: 400;
-  white-space: nowrap;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.4s ease, transform 0.4s ease;
-  transition-delay: 1s; /* Add a delay of 0.3 seconds */
 }
 
 .sidebar.open li a .links_name {
@@ -698,7 +721,6 @@ header > div > span {
     transform: translateX(0%);
   }
 }
-
 
 @-webkit-keyframes swashIn {
   0% {
@@ -735,7 +757,6 @@ header > div > span {
   }
 }
 
-
 @-webkit-keyframes holeOut {
   0% {
     opacity: 1;
@@ -759,36 +780,4 @@ header > div > span {
     transform-origin: 50% 50%;
     transform: scale(0, 0) rotateY(180deg);
   }
-}
-
-
-.sidebar.open li {
-  animation: slideLeftReturn 1s ease;
-}
-
-
-.goToTop {
-  /* background-color: red;
-  padding: .1rem;
-  position: absolute;
-  top: 2rem;
-  z-index: 100;
-  border-radius: 20px; */
-
-  display: none;
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background-color: #007BFF;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  z-index: 100;
-
-  padding: 10px;
-  cursor: pointer;
-}
-
-.goToTop i {
-  font-size: 3rem;
 }
