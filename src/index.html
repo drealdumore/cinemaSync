@@ -13,58 +13,61 @@
 
     <title>CinemaSync</title>
   </head>
+
   <body>
     <div class="sidebar">
       <ul class="nav-list">
-        <li>
-          <a>
-            <i class="bx bx-search"></i>
-          </a>
+        <li class="search__li">
+          <i class="bx bx-search"></i>
+          <input type="search" class="input" placeholder="Search..." />
           <span class="tooltip">Search</span>
         </li>
         <li>
-          <a >
+          <a id="browseLink">
             <i class="bx bx-compass"></i>
+            <span class="links_name">Browse</span>
           </a>
           <span class="tooltip">Browse</span>
         </li>
-
         <li>
-          <a >
+          <a id="trendingLink">
             <i class="bx bx-trending-up"></i>
+            <span class="links_name">Trending</span>
           </a>
           <span class="tooltip">Trending</span>
         </li>
-
         <li>
-          <a >
+          <a id="tvSeriesLink">
             <i class="bx bx-tv"></i>
+            <span class="links_name">Tv Series</span>
           </a>
           <span class="tooltip">Tv Series</span>
         </li>
-
         <li>
-          <a >
+          <a id="watchlistLink">
             <i class="bx bx-movie-play"></i>
+            <span class="links_name">Watchlist</span>
           </a>
           <span class="tooltip">Watchlist</span>
         </li>
-
         <li>
-          <a onclick="topRated()">
+          <a id="topRatedLink">
             <i class="bx bx-trophy"></i>
+            <span class="links_name">Top Rated</span>
           </a>
           <span class="tooltip">Top Rated</span>
         </li>
         <li>
-          <a >
+          <a id="popularLink">
             <i class="bx bxs-hot"></i>
+            <span class="links_name">Popular</span>
           </a>
           <span class="tooltip">Popular</span>
         </li>
         <li>
-          <a >
+          <a id="upcomingLink">
             <i class="bx bxs-hourglass"></i>
+            <span class="links_name">Upcoming</span>
           </a>
           <span class="tooltip">Upcoming</span>
         </li>
@@ -74,20 +77,18 @@
     <section class="home-section">
       <header>
         <img src="../logo.png" class="logo" alt="logo" />
+
+        <i class="bx menu__icon bx-menu" id="btn"></i>
         <div>
-          <span class="link" id="browse"
-            >browse</span
-          >
-          <span class="link" id="trending"
-            >Trending</span
-          >
-          <span class="link" id="watchlist"
-            >Watchlist</span
-          >
-          <span class="link" id="series" 
-            >Tv series</span
-          >
-          <input placeholder="Search.." class="input" type="search" />
+          <span class="link" id="browse">browse</span>
+          <span class="link" id="trending">Trending</span>
+          <span class="link" id="watchlist">Watchlist</span>
+          <span class="link" id="series">Tv series</span>
+          <input
+            placeholder="Search.."
+            class="input search-input"
+            type="search"
+          />
         </div>
       </header>
       <div class="title">
