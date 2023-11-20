@@ -671,6 +671,10 @@ header > div > span {
     padding-bottom: 3.4rem;
   }
 
+  .search__li input::placeholder {
+    color: #ffffffdb;
+  }
+
   .open.search__li {
     display: block;
   }
