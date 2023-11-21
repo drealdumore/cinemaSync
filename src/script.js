@@ -4,7 +4,13 @@ const apiKey = "7eae2080d0b3d02dcdb56c3aba64a598";
 const moviesContainer = document.querySelector(".cards");
 const moviesPopup = document.querySelector(".popup");
 const input = document.querySelectorAll(".input");
+const callPopup = document.querySelector(".call-popup");
+const searchPopup = document.querySelector(".search__popup");
+const searchPopupBtn = document.querySelector(".labelforsearch");
+const InputContainer = document.querySelector(".InputContainer");
+const popupInput = document.querySelector(".search-popup-input");
 const success = document.querySelector(".success");
+const easybtn = document.getElementById("easybtn");
 
 const pageName = document.querySelector(".name");
 const trendingSidebar = document.querySelector(".bx-trending-up");
@@ -84,8 +90,6 @@ const discoverMovies = async function () {
 
     popularSidebar.style.backgroundColor = "";
     popularSidebar.style.color = "";
-
-    // searchSidebar.style.display = "none";
 
     searchSidebar.style.backgroundColor = "";
     searchSidebar.style.color = "";
@@ -270,6 +274,7 @@ const searchMovies = async function (query) {
     popularSidebar.style.backgroundColor = "";
     popularSidebar.style.color = "";
 
+    hideSearchPopup();
     if (sidebar.classList.contains("open")) {
       sidebar.classList.remove("open");
       menuBtnChange();
@@ -286,6 +291,11 @@ input.forEach((input) => {
       searchMovies(query);
     }
   });
+});
+
+searchPopupBtn.addEventListener("click", () => {
+  const query = popupInput.value;
+  searchMovies(query);
 });
 
 const addToWatchlist = async function (event, movieIdToAdd) {
@@ -802,3 +812,23 @@ function scrollToTop() {
 }
 
 goToTop.addEventListener("click", scrollToTop);
+
+function displaySearchPopup() {
+  searchPopup.style.display = "flex";
+  InputContainer.style.animation = "slideDownReturn .5s ease";
+}
+
+function hideSearchPopup() {
+  InputContainer.style.animation = "holeOut .5s ease";
+  setTimeout(() => {
+    searchPopup.style.display = "none";
+  }, 300);
+}
+
+callPopup.addEventListener("click", displaySearchPopup);
+
+InputContainer.addEventListener("click", function (event) {
+  event.stopPropagation();
+});
+
+searchPopup.addEventListener("click", hideSearchPopup);

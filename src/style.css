@@ -55,7 +55,7 @@ body {
 }
 
 .sidebar.open li {
-  animation: slideLeftReturn .5s ease;
+  animation: slideLeftReturn 0.5s ease;
 }
 
 .goToTop {
@@ -230,7 +230,7 @@ header > div > span {
   border-radius: 10px;
   transition: all 0.4s;
   box-shadow: 0px 0px 120px -25px rgba(0, 0, 0, 0.5);
-  animation: swashIn .5s ease;
+  animation: swashIn 0.5s ease;
 
   /* &:hover {
     transform: scale(1.02);
@@ -359,7 +359,6 @@ header > div > span {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 1500;
   transition: all 0.5s;
   height: 90vh;
   padding: 0 2rem;
@@ -541,7 +540,83 @@ header > div > span {
   cursor: pointer;
 }
 
+.sidebar.open li a .links_name {
+  opacity: 1;
+  pointer-events: auto;
+  display: block;
+}
+
+.InputContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  border-radius: 5px;
+  overflow: hidden;
+  padding-left: 15px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.075);
+  width: 45%;
+  height: 10%;
+  
+}
+
+.search-popup-input {
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  font-size: 1.5rem;
+}
+
+.labelforsearch {
+  cursor: pointer;
+  padding: 0px 12px;
+}
+
+.searchIcon {
+  width: 25px;
+}
+
+.searchIcon path {
+  fill: #000;
+}
+
+.search__popup {
+  align-content: center;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 0 2rem;
+  width: 100%;
+  height: 100%;
+  background-color: #00000080;
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  z-index: 100;
+  transition: all 0.5s;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.call-popup {
+  font-size: 2rem;
+}
+
+.nav-icons {
+  display: flex;
+  gap: 1rem;
+  cursor: auto;
+}
+
 @media only screen and (max-width: 991px) {
+  .InputContainer {
+    width: 61%;
+    height: 9%;
+  }
+
   .hover {
     left: 8.8rem;
     width: max-content;
@@ -674,6 +749,11 @@ header > div > span {
 
 /* @media only screen and (min-width: 365px) and (max-width: 576px) { */
 @media only screen and (max-width: 576px) {
+  .InputContainer {
+    width: 95%;
+    height: 9%;
+  }
+
   .cards {
     gap: 1rem;
     display: grid;
@@ -698,12 +778,6 @@ header > div > span {
   .div__detail h3 {
     font-size: 100%;
   }
-}
-
-.sidebar.open li a .links_name {
-  opacity: 1;
-  pointer-events: auto;
-  display: block;
 }
 
 @-webkit-keyframes slideLeftReturn {
@@ -786,3 +860,27 @@ header > div > span {
     transform: scale(0, 0) rotateY(180deg);
   }
 }
+
+
+@-webkit-keyframes slideDownReturn {
+  0% {
+    transform-origin: 0 0;
+    transform: translateY(100%);
+  }
+  100% {
+    transform-origin: 0 0;
+    transform: translateY(0%);
+  }
+}
+@keyframes slideDownReturn {
+  0% {
+    transform-origin: 0 0;
+    transform: translateY(100%);
+  }
+  100% {
+    transform-origin: 0 0;
+    transform: translateY(0%);
+  }
+}
+
+
